@@ -1,26 +1,62 @@
 @import "tailwindcss";
 
+/* Variabel warna utama */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary-color: #E67E22; /* Oranye khas BPBD */
+  --secondary-color: #2C3E50; /* Biru gelap untuk kontras */
+  --background-light: #F8F9FA; /* Background terang */
+  --background-dark: #1E1E1E; /* Background gelap untuk dark mode */
+  --text-light: #333; /* Warna teks utama */
+  --text-dark: #FFF; /* Warna teks di dark mode */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Font utama */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply font-sans text-base leading-relaxed;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background-light);
+  color: var(--text-light);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode */
+.dark body {
+  background-color: var(--background-dark);
+  color: var(--text-dark);
+}
+
+/* Header */
+header {
+  @apply fixed w-full top-0 z-50 shadow-md bg-white dark:bg-gray-900;
+}
+
+/* Navigasi */
+nav {
+  @apply flex items-center justify-between px-6 py-4;
+}
+
+/* Tombol utama */
+.btn-primary {
+  @apply px-4 py-2 rounded-lg font-semibold transition-all;
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.2);
+}
+
+/* Hero Section */
+.hero {
+  @apply relative flex items-center justify-center text-center py-20;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('/hero-image.jpg') center/cover;
+  color: white;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+  .hero {
+    @apply py-16;
+  }
 }
